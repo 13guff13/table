@@ -1,0 +1,67 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{
+    "config": {
+        "RN": {
+            "width": 30,
+            "label": "#",
+            "type": "NUMERIC"
+        },
+        "DESCRIPTION": {
+            "width": 300,
+            "label": "Item Description",
+            "type": "STRING"
+        },
+        "SOURCE_NM": {
+            "width": 100,
+            "label": "Source",
+            "type": "STRING"
+        },
+        "CLIENT_ID": {
+            "width": 50,
+            "label": "Client ID",
+            "type": "NUMERIC"
+        },
+        "CLIENT_NM": {
+            "width": 120,
+            "label": "Client Name",
+            "type": "STRING"
+        },
+        "ACTIVATION_DT": {
+            "width": 150,
+            "label": "Activation Date",
+            "type": "DATE"
+        },
+        "TERMINATION_DT": {
+            "width": 150,
+            "label": "Termination Date",
+            "type": "DATE"
+        },
+        "VALUE_1": {
+            "width": 100,
+            "label": "Interference Coordination Value",
+            "type": "NUMERIC"
+        },
+        "VALUE_2": {
+            "width": 100,
+            "label": "Duplex Compensation Coefficient",
+            "type": "NUMERIC"
+        },
+        "VALUE_3": {
+            "width": 100,
+            "label": "Max Range",
+            "type": "NUMERIC"
+        },
+        "UPDATED_BY": {
+            "width": 120,
+            "label": "Updated By",
+            "type": "STRING"
+        },
+        "UPDATE_TIMESTAMP": {
+            "width": 150,
+            "label": "Update Time",
+            "type": "TIMESTAMP"
+        }
+    }
+}
