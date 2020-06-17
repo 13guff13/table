@@ -9,7 +9,8 @@ import {
 } from '@fluentui/react/lib/DetailsList';
 import { mergeStyleSets } from '@fluentui/react/lib/Styling';
 
-import { useTableData } from '../../hooks'
+import { useTableData } from '../../hooks';
+import { copyAndSort } from '../../utils';
 
 initializeIcons();
 
@@ -49,13 +50,33 @@ export default function Table({config, items: rows}) {
       return <span>{fieldContent}</span>;
     }
 
+    const onColumnClick = (e, column) => {
+      const newColumns = columns.slice();
+      const currColumn = newColumns.filter(currCol => column.key === currCol.key)[0];
+      newColumns.forEach((newCol) => {
+        if (newCol === currColumn) {
+          currColumn.isSortedDescending = !currColumn.isSortedDescending;
+          currColumn.isSorted = true;
+        } else {
+          newCol.isSorted = false;
+          newCol.isSortedDescending = false;
+        }
+      });
+
+      const newItems = copyAndSort(items, currColumn.fieldName, currColumn.isSortedDescending);
+      setState({
+        columns: newColumns,
+        items: newItems,
+      });
+    };
+
     const defColumn = () => ({
       headerClassName: classNames.headerClassName,
       isSorted: false,
       isSortedDescending: false,
       sortAscendingAriaLabel: 'Sorted A to Z',
       sortDescendingAriaLabel: 'Sorted Z to A',
-  
+      onColumnClick,
     })
 
     const columns = Object.keys(config).map((key) => {
