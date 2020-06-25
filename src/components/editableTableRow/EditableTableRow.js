@@ -6,9 +6,9 @@ import { useContextState } from "../../ContextStateProvider";
 import { theme } from "../../theme/styles";
 
 const sourceNameOptions = [
-  { key: "DEV", text: "dev" },
-  { key: "UAT", text: "UAT", disabled: true },
-  { key: "PROD", text: "prod" },
+  { key: "DEV", text: "DEV" },
+  { key: "UAT", text: "UAT" },
+  { key: "PROD", text: "PROD" },
 ];
 
 const onRenderItemColumn = (item, _, column) => {
@@ -45,10 +45,19 @@ export function EditableTableRow(props) {
       });
     };
 
+    const dropdownChangeHandler = (e, option, number) => {      
+      provideTableContextValue({
+        type: ACTIONS.EDIT_TABLE_ROW,
+        payload: { [column.key]: option.text },
+      });
+    }
+
     switch (column.key) {
       case "SOURCE_NM":
         return (
           <Dropdown
+            onChange={dropdownChangeHandler}
+            defaultSelectedKey={value}
             placeholder="Select an option"
             options={sourceNameOptions}
           />
