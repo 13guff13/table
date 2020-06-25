@@ -1,9 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-import Table from './components/table/Table';
-
-ReactDOM.render(
-  <Table />,
-  document.getElementById('root')
-)
+ReactDOM.render(<App />, document.getElementById("root"));
