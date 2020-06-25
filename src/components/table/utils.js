@@ -1,5 +1,6 @@
 import { theme } from "../../theme/styles";
 import { EditButton } from "../editButton/EditButton";
+import { uniqWith } from "lodash";
 
 const defColumn = () => ({
   headerClassName: theme.headerClassName,
@@ -55,4 +56,15 @@ export function editButtonColumn() {
     name: "",
     onRender: EditButton,
   };
+}
+
+export function getUniqueClientNames(items) {
+  const clientNameKey = "CLIENT_NM";
+  const uniqueItems = uniqWith(items, (a, b) => {
+    return a[clientNameKey] === b[clientNameKey];
+  });
+  return uniqueItems.map((it) => ({
+    key: it[clientNameKey],
+    text: it[clientNameKey],
+  }));
 }

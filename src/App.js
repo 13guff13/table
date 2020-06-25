@@ -7,7 +7,11 @@ import {
   tableContextInitState,
 } from "./components/table/TableContext";
 import { ContextStateProvider } from "./ContextStateProvider";
-import { editButtonColumn, configToColumns } from "./components/table/utils";
+import {
+  editButtonColumn,
+  configToColumns,
+  getUniqueClientNames,
+} from "./components/table/utils";
 
 export default function App() {
   const { config } = useApi(CONFIG_URL);
@@ -19,7 +23,13 @@ export default function App() {
 
   const columns = configToColumns(config);
   columns.push(editButtonColumn());
-  const tableContextValue = { ...tableContextInitState, items, columns };
+
+  const tableContextValue = {
+    ...tableContextInitState,
+    items,
+    columns,
+    uniqueClientNames: getUniqueClientNames(items),
+  };
 
   return (
     <ContextStateProvider

@@ -31,6 +31,7 @@ export function EditableTableRow(props) {
   const [
     {
       editingRow: { id: editingRowId, data },
+      uniqueClientNames,
     },
     provideTableContextValue,
   ] = useContextState();
@@ -45,12 +46,18 @@ export function EditableTableRow(props) {
       });
     };
 
-    const dropdownChangeHandler = (e, option, number) => {      
+    const dropdownChangeHandler = (e, option, number) => {
       provideTableContextValue({
         type: ACTIONS.EDIT_TABLE_ROW,
         payload: { [column.key]: option.text },
       });
-    }
+    };
+    const comboBoxChangeHandler = (e, option, number) => {
+      provideTableContextValue({
+        type: ACTIONS.EDIT_TABLE_ROW,
+        payload: { [column.key]: option.text },
+      });
+    };
 
     switch (column.key) {
       case "SOURCE_NM":
@@ -65,11 +72,11 @@ export function EditableTableRow(props) {
       case "CLIENT_NM":
         return (
           <ComboBox
-            defaultSelectedKey="C"
-            label=""
-            allowFreeform
+            selectedKey={value}
+            allowFreeform={false}
             autoComplete="on"
-            options={sourceNameOptions}
+            onChange={comboBoxChangeHandler}
+            options={uniqueClientNames}
           />
         );
       case "DESCRIPTION":
